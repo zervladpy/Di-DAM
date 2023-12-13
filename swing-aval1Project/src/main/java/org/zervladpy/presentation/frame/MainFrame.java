@@ -1,7 +1,6 @@
 package org.zervladpy.presentation.frame;
 
-import org.w3c.dom.Text;
-import org.zervladpy.controller.listener.StringListener;
+import org.zervladpy.presentation.panel.AddPersonFormPanel;
 import org.zervladpy.presentation.panel.TextPanel;
 import org.zervladpy.presentation.toolbar.TopMenuBar;
 import org.zervladpy.utils.Constraints;
@@ -13,12 +12,14 @@ public class MainFrame extends JFrame {
 
     private final TopMenuBar topMenuBar;
     private final TextPanel textPanel;
+    private final AddPersonFormPanel addPersonFormPanel;
 
     public MainFrame() {
         super(Constraints.APP_NAME);
 
         topMenuBar = new TopMenuBar();
         textPanel = new TextPanel();
+        addPersonFormPanel = new AddPersonFormPanel();
 
         topMenuBar.setListener(textPanel::append);
 
@@ -27,6 +28,7 @@ public class MainFrame extends JFrame {
 
     private void buildUid() {
         add(topMenuBar, BorderLayout.NORTH);
+        add(addPersonFormPanel, BorderLayout.LINE_START);
         add(textPanel, BorderLayout.CENTER);
 
         setDefaults();
