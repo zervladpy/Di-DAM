@@ -1,5 +1,7 @@
 package org.zervladpy.presentation.panel;
 
+import org.zervladpy.controller.listener.StringListener;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -7,13 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddPersonFormPanel extends JPanel implements ActionListener {
-
     private  final JLabel jLabelName;
     private final JTextField jTextFieldName;
     private  final JLabel jLabelOccupation;
     private final JTextField jTextFieldOccupation;
     private final JButton jButtonAdd;
-
+    private StringListener listener;
     public AddPersonFormPanel() {
         jLabelName = new JLabel("Name:");
         jTextFieldName = new JTextField();
@@ -40,6 +41,7 @@ public class AddPersonFormPanel extends JPanel implements ActionListener {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
         gbc.gridy = 0;
+
         // NAME
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.NORTHEAST;
@@ -47,6 +49,7 @@ public class AddPersonFormPanel extends JPanel implements ActionListener {
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         formPanel.add(jTextFieldName, gbc);
+
         // OCCUPATION
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -61,12 +64,22 @@ public class AddPersonFormPanel extends JPanel implements ActionListener {
         gbc.anchor = GridBagConstraints.WEST;
         formPanel.add(jButtonAdd, gbc);
 
-
         add(formPanel);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
+        if (event.getSource() instanceof JButton jButton) {
+            String name = jTextFieldName.getText();
+            String occupation = jTextFieldOccupation.getText();
+            if (listener != null) {
+                listener.emit(name + ": " + occupation + System.lineSeparator());
+            }
+        }
+    }
+
+    public void setFromCompleteListener(StringListener listener) {
+        this.listener = listener;
     }
 }
