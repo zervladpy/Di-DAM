@@ -1,7 +1,5 @@
 package org.zervladpy.presentation.panel;
 
-import org.w3c.dom.Text;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,7 +19,7 @@ public class TextPanel extends JPanel {
         setLayout(new BorderLayout());
 
         add(new JScrollPane(textArea), BorderLayout.CENTER);
-    };
+    }
 
     public void append(String text) {
         textArea.append(text);
