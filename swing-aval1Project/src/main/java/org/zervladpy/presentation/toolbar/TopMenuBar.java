@@ -1,5 +1,6 @@
 package org.zervladpy.presentation.toolbar;
 
+import org.zervladpy.controller.event.StringEvent;
 import org.zervladpy.controller.listener.StringListener;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ public class TopMenuBar extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() instanceof JButton jButton) {
             if (stringListener != null) {
-                stringListener.emit(jButton.getText() + System.lineSeparator());
+                stringListener.emit(new StringEvent(this, jButton.getText()));
             }
         }
     }

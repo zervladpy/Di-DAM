@@ -1,5 +1,8 @@
 package org.zervladpy.presentation.panel;
 
+import org.zervladpy.controller.event.FormEvent;
+import org.zervladpy.controller.event.StringEvent;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,8 +24,12 @@ public class TextPanel extends JPanel {
         add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
-    public void append(String text) {
-        textArea.append(text);
+    public void append(StringEvent event) {
+        textArea.append(event.getText());
+    }
+
+    public void append(FormEvent event) {
+        textArea.append(event.toString());
     }
 
     public void reset() {

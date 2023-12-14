@@ -1,5 +1,6 @@
 package org.zervladpy.presentation.frame;
 
+import org.zervladpy.controller.listener.FormListener;
 import org.zervladpy.controller.listener.StringListener;
 import org.zervladpy.presentation.panel.AddPersonFormPanel;
 import org.zervladpy.presentation.panel.TextPanel;
@@ -23,8 +24,7 @@ public class MainFrame extends JFrame {
         addPersonFormPanel = new AddPersonFormPanel();
 
         topMenuBar.setListener(textPanel::append);
-        addPersonFormPanel.setFromCompleteListener(textPanel::append);
-
+        addPersonFormPanel.setListener(textPanel::append);
         buildUid();
     }
 
