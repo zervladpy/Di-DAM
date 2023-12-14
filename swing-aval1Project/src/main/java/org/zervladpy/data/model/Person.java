@@ -4,9 +4,11 @@ import org.zervladpy.utils.AgeCategory;
 import org.zervladpy.utils.EmploymentCategory;
 import org.zervladpy.utils.Gender;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     static private int count = 0;
-    private int id;
+    private final int id;
     private String name;
     private String occupation;
     private AgeCategory ageCategory;
@@ -14,9 +16,11 @@ public class Person {
     private String taxID;
     private boolean usCitizen;
     private Gender gender;
+
     public Person() {
         this.id = count++;
     }
+
     public Person(String name, String occupation, AgeCategory ageCategory, EmploymentCategory employmentCategory, String taxID, boolean usCitizen, Gender gender) {
         this.id = count++;
         this.name = name;
@@ -27,6 +31,7 @@ public class Person {
         this.usCitizen = usCitizen;
         this.gender = gender;
     }
+
     public int getId() {
         return id;
     }

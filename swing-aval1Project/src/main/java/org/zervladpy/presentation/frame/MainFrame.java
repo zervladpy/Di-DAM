@@ -1,13 +1,11 @@
 package org.zervladpy.presentation.frame;
 
 import org.zervladpy.controller.PersonController;
-import org.zervladpy.controller.IAppController;
 import org.zervladpy.data.local.PersonDAO;
-import org.zervladpy.data.model.Person;
 import org.zervladpy.presentation.menu.FileMenu;
 import org.zervladpy.presentation.menu.WindowMenu;
 import org.zervladpy.presentation.panel.AddPersonFormPanel;
-import org.zervladpy.presentation.panel.TextPanel;
+import org.zervladpy.presentation.panel.TablePanel;
 import org.zervladpy.presentation.toolbar.TopMenuBar;
 import org.zervladpy.utils.Constraints;
 
@@ -15,10 +13,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    private final IAppController<Person> controller;
+    private final PersonController controller;
     private final JMenuBar jMenuBar;
     private final TopMenuBar topMenuBar;
-    private final TextPanel textPanel;
+    private final TablePanel tablePanel;
+
     private final AddPersonFormPanel addPersonFormPanel;
 
     public MainFrame() {
@@ -26,16 +25,19 @@ public class MainFrame extends JFrame {
 
         controller = new PersonController();
         controller.setDao(new PersonDAO());
-
         jMenuBar = new JMenuBar();
         jMenuBar.add(new FileMenu());
         jMenuBar.add(new WindowMenu());
 
         topMenuBar = new TopMenuBar();
-        textPanel = new TextPanel();
+
+        tablePanel = new TablePanel(controller);
         addPersonFormPanel = new AddPersonFormPanel();
 
-        addPersonFormPanel.setListener(controller::add);
+        addPersonFormPanel.setListener(event -> {
+            controller.add(event);
+            tablePanel.refresh();
+        });
         buildUid();
     }
 
@@ -43,7 +45,7 @@ public class MainFrame extends JFrame {
         setJMenuBar(jMenuBar);
         add(topMenuBar, BorderLayout.NORTH);
         add(addPersonFormPanel, BorderLayout.LINE_START);
-        add(textPanel, BorderLayout.CENTER);
+        add(tablePanel, BorderLayout.CENTER);
 
         setDefaults();
     }
@@ -52,9 +54,7 @@ public class MainFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(600, 500);
         setResizable(false);
         setVisible(true);
     }
-
 }
