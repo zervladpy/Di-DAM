@@ -190,8 +190,6 @@ public class AddPersonFormPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent event) {
 
         if (event.getSource() instanceof JButton jButton) {
-            String name = jTextFieldName.getText();
-            String occupation = jTextFieldOccupation.getText();
             if (listener != null) {
             }
         }
