@@ -1,16 +1,13 @@
-package org.zervladpy.controller.model;
+package org.zervladpy.data.model;
 
-public class Age {
+public class Employment {
+
     private final int id;
     private final String value;
-    public Age(int id, String value) {
+
+    public Employment(int id, String value) {
         this.id = id;
         this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 
     public int getId() {
@@ -21,4 +18,8 @@ public class Age {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
 }

@@ -1,7 +1,9 @@
 package org.zervladpy.presentation.frame;
 
-import org.zervladpy.controller.listener.FormListener;
-import org.zervladpy.controller.listener.StringListener;
+import org.zervladpy.controller.PersonController;
+import org.zervladpy.controller.IAppController;
+import org.zervladpy.data.local.PersonDAO;
+import org.zervladpy.data.model.Person;
 import org.zervladpy.presentation.menu.FileMenu;
 import org.zervladpy.presentation.menu.WindowMenu;
 import org.zervladpy.presentation.panel.AddPersonFormPanel;
@@ -13,7 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-
+    private final IAppController<Person> controller;
     private final JMenuBar jMenuBar;
     private final TopMenuBar topMenuBar;
     private final TextPanel textPanel;
@@ -21,6 +23,9 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super(Constraints.APP_NAME);
+
+        controller = new PersonController();
+        controller.setDao(new PersonDAO());
 
         jMenuBar = new JMenuBar();
         jMenuBar.add(new FileMenu());
@@ -30,8 +35,7 @@ public class MainFrame extends JFrame {
         textPanel = new TextPanel();
         addPersonFormPanel = new AddPersonFormPanel();
 
-        topMenuBar.setListener(textPanel::append);
-        addPersonFormPanel.setListener(textPanel::append);
+        addPersonFormPanel.setListener(controller::add);
         buildUid();
     }
 

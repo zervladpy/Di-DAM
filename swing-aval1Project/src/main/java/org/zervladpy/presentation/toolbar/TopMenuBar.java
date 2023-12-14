@@ -1,13 +1,12 @@
 package org.zervladpy.presentation.toolbar;
 
-import org.zervladpy.controller.event.StringEvent;
-import org.zervladpy.controller.listener.StringListener;
+import org.zervladpy.presentation.event.StringEvent;
+import org.zervladpy.presentation.listener.StringListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 public class TopMenuBar extends JPanel implements ActionListener {
     private final JButton jButtonHello;

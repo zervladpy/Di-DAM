@@ -1,7 +1,9 @@
 package org.zervladpy.presentation.panel;
 
-import org.zervladpy.controller.listener.FormListener;
-import org.zervladpy.controller.model.*;
+import org.zervladpy.data.model.Age;
+import org.zervladpy.data.model.Employment;
+import org.zervladpy.presentation.event.FormEvent;
+import org.zervladpy.presentation.listener.FormListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -191,6 +193,30 @@ public class AddPersonFormPanel extends JPanel implements ActionListener {
 
         if (event.getSource() instanceof JButton jButton) {
             if (listener != null) {
+                if (jButton.getText().equals("Add")){
+
+                    int genderSelection;
+
+                    if (jRadioButtonMale.isSelected()) {
+                        genderSelection = 0;
+                    } else {
+                        genderSelection = 1;
+                    }
+
+                    FormEvent formEvent = new FormEvent(
+                            this,
+                            jTextFieldName.getText(),
+                            jTextFieldOccupation.getText(),
+                            jListAge.getSelectedIndex(),
+                            jComboBoxEmployment.getSelectedIndex(),
+                            jTextFieldTaxID.getText(),
+                            jCheckBoxUSCitizen.isSelected(),
+                            genderSelection
+
+                    );
+
+                    listener.emit(formEvent);
+                }
             }
         }
     }

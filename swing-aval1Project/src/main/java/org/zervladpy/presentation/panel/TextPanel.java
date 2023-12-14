@@ -1,7 +1,7 @@
 package org.zervladpy.presentation.panel;
 
-import org.zervladpy.controller.event.FormEvent;
-import org.zervladpy.controller.event.StringEvent;
+import org.zervladpy.presentation.event.FormEvent;
+import org.zervladpy.presentation.event.StringEvent;
 
 import javax.swing.*;
 import java.awt.*;

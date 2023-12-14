@@ -1,4 +1,4 @@
-package org.zervladpy.controller.event;
+package org.zervladpy.presentation.event;
 
 import java.util.EventObject;
 

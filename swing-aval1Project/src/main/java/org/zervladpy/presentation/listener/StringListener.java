@@ -1,6 +1,6 @@
-package org.zervladpy.controller.listener;
+package org.zervladpy.presentation.listener;
 
-import org.zervladpy.controller.event.StringEvent;
+import org.zervladpy.presentation.event.StringEvent;
 
 import java.util.EventListener;
 
